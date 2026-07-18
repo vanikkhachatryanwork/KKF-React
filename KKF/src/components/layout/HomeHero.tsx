@@ -17,7 +17,7 @@ export function HomeHero() {
       />
       <div className="hero-video__shade" />
       <div className="hero-video__content">
-        <p>KK FURNITURE · EST. 2024</p>
+        <p>KK FURNITURE</p>
         <h1>{t.heroTitle}</h1>
         <span>{t.heroText}</span>
         <Link to={`${prefix}/works`}>
