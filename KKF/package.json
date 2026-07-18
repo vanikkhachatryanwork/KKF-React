@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "firebase:login": "firebase login",
+    "firebase:projects": "firebase projects:list",
+    "deploy": "npm run build && firebase deploy --only hosting",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -24,6 +27,7 @@
     "eslint": "^10.6.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
+    "firebase-tools": "^15.24.0",
     "globals": "^17.7.0",
     "prettier": "^3.9.5",
     "sass": "^1.101.0",
