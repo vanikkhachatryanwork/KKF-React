@@ -310,7 +310,7 @@ body {
 .service-card img {
   height: auto;
   aspect-ratio: 1.35;
-  object-fit: cover;
+  object-fit: inherit;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
 }
@@ -1112,4 +1112,97 @@ body,
 }
 .works-menu > button[aria-expanded="true"] .works-menu__chevron {
   transform: rotate(180deg);
+}
+
+// Carousel controls
+.swiper-pagination-horizontal {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.gallery-stage .swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+  background: #c8b7a7;
+  opacity: 0.45;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background-color 0.25s ease;
+}
+.gallery-stage .swiper-pagination-bullet-active {
+  background: var(--brass);
+  opacity: 1;
+  transform: scale(1.55);
+}
+.gallery-stage .swiper-button-next,
+.gallery-stage .swiper-button-prev {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(247, 242, 234, 0.92);
+  color: var(--espresso);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.gallery-stage .swiper-button-next:hover,
+.gallery-stage .swiper-button-prev:hover {
+  background: #fff;
+  transform: scale(1.07);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+}
+.gallery-stage .swiper-button-disabled {
+  opacity: 0.35;
+}
+
+@media (max-width: 980px) {
+  .work-page .gallery-stage {
+    width: auto;
+    max-width: none;
+    margin-inline: calc(var(--page) * -1);
+  }
+  .gallery-stage {
+    padding: 36px 20px 58px;
+  }
+  .gallery-stage .gallery,
+  .gallery-stage .gallery--coverflow {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 54px 62px;
+    overflow: hidden;
+  }
+  .gallery-stage .gallery--coverflow .swiper-slide {
+    width: min(72vw, 620px);
+    max-width: calc(100vw - 150px);
+    height: min(66vh, 590px);
+  }
+  .gallery-stage .gallery__button {
+    max-width: 100%;
+  }
+  .gallery-stage .gallery__button img {
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 680px) {
+  .gallery-stage {
+    padding-inline: 10px;
+  }
+  .gallery-stage .gallery,
+  .gallery-stage .gallery--coverflow {
+    padding-inline: 40px;
+  }
+  .gallery-stage .gallery--coverflow .swiper-slide {
+    width: calc(100vw - 84px);
+    max-width: calc(100vw - 84px);
+    height: min(62vh, 470px);
+  }
+  .gallery-stage .swiper-button-next,
+  .gallery-stage .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+  }
 }
