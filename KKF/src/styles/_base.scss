@@ -406,6 +406,10 @@ img {
 .state--error {
   color: #8c2020;
 }
+.route-loader {
+  min-height: 45vh;
+  background: var(--paper);
+}
 .site-footer {
   background: #090909;
   color: #fff;
