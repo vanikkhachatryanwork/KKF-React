@@ -12,11 +12,41 @@ dist
 dist-ssr
 *.local
 
+# Environment files may contain API keys or private configuration.
+.env
+.env.*
+!.env.example
+
+# Firebase local state and diagnostic logs.
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+ui-debug.log
+
+# Never commit Google/Firebase service-account credentials.
+*service-account*.json
+*serviceAccount*.json
+google-credentials*.json
+credentials*.json
+secrets/
+private/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Test and tooling output.
+coverage/
+.eslintcache
+.sass-cache/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
+Desktop.ini
 *.suo
 *.ntvs*
 *.njsproj

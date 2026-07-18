@@ -1,75 +1,104 @@
-# React + TypeScript + Vite
+# KK Furniture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Standalone multilingual furniture portfolio built with React, TypeScript, Vite, SCSS, Swiper, and Firebase Hosting.
 
-Currently, two official plugins are available:
+Live site: [https://kk-furniture-am.web.app](https://kk-furniture-am.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Requirements
 
-## React Compiler
+- Node.js 20 or newer
+- npm 10 or newer
+- A Firebase account for deployment
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local development
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```powershell
+cd "D:\My folders\KKF projects\KKF-React\KKF"
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Vite prints the local URL, normally `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Type-check and create a production build in `dist/` |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview the production build locally |
+| `npm run firebase:login` | Authenticate Firebase CLI |
+| `npm run firebase:projects` | List accessible Firebase projects |
+| `npm run deploy` | Build and deploy to Firebase Hosting |
 
+## Routes
+
+Armenian is the default locale. Other languages use a URL prefix.
+
+| Page | Armenian | English example |
+| --- | --- | --- |
+| Home | `/` | `/en` |
+| Services | `/services` | `/en/services` |
+| Works | `/works` | `/en/works` |
+| Work gallery | `/works/:slug` | `/en/works/xohanoc` |
+
+Supported locales:
+
+- `am` — Armenian, default
+- `en` — English
+- `ru` — Russian
+- `ir` — Persian, rendered right-to-left
+
+## Project structure
+
+```text
+src/
+├── components/
+│   ├── layout/          Header, Home hero, and footer
+│   ├── Gallery.tsx      Swiper gallery and lightbox
+│   ├── WorkGrid.tsx     Work/category cards
+│   └── ...
+├── data/
+│   └── content.ts       Local site content and media definitions
+├── hooks/
+│   └── useLocale.ts     Current locale and route prefix
+├── lib/
+│   └── i18n.ts          Interface translations
+├── pages/               Route-level page components
+├── styles/              SCSS source
+├── App.tsx              Route configuration
+└── main.tsx             Application entry point
+
+public/assets/
+├── brand/               Logo and hero video
+├── flags/               Language flags
+├── services/            Service images
+└── works/               Work gallery images grouped by slug
 ```
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Editing content and media](docs/CONTENT.md)
+- [Styling and responsive design](docs/STYLING.md)
+- [Firebase deployment](docs/DEPLOYMENT.md)
+- [Security and Git safety](docs/SECURITY.md)
+
+## Quality checks
+
+Before committing or deploying:
+
+```powershell
+npm run lint
+npm run build
+```
+
+Both commands must complete successfully.
+
+## Important notes
+
+- The application does not depend on WordPress or an external API.
+- Content and image paths are stored locally in `src/data/content.ts`.
+- Do not edit files inside `dist/`; they are generated by `npm run build`.
+- Firebase rewrites all routes to `index.html`, allowing direct visits to nested React routes.
