@@ -1,0 +1,4 @@
+// Single style entry point. Order is intentional: the theme layer refines
+// the migrated foundation while components are progressively modularized.
+@use 'legacy';
+@use 'theme';
